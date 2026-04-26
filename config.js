@@ -39,6 +39,41 @@ let config = {
 
 	modules: [
 		{
+			module: "MMM-BackgroundSlideshow",
+			position: "fullscreen_below",
+			config: {
+				imagePaths: ["/home/stefan/Pictures"],
+				slideshowSpeed: 10000,
+				transitionImages: true,
+				transition: "fade",
+				recursiveSubDirectories: true,
+			}
+		},
+		{
+			module: "MMM-pages",
+			config: {
+				modules: [
+					["MMM-BackgroundSlideshow"],
+					["clock", "calendar", "compliments", "pageWeather"]
+				],
+				fixed: ["alert", "updatenotification", "MMM-KeyBindings"]
+			}
+		},
+		{
+			module: "MMM-KeyBindings",
+			config: {
+				enableKeyboard: true,
+				handleKeys: ["k"],
+				actions: [
+					{
+						key: "k",
+						state: "KEY_PRESSED",
+						notification: "PAGE_INCREMENT"
+					}
+				]
+			}
+		},
+		{
 			module: "alert",
 		},
 		{
@@ -64,12 +99,9 @@ let config = {
 			}
 		},
 		{
-			module: "compliments",
-			position: "lower_third"
-		},
-		{
 			module: "weather",
 			position: "top_right",
+			classes: "pageWeather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -81,6 +113,7 @@ let config = {
 			module: "weather",
 			position: "top_right",
 			header: "Weather Forecast",
+			classes: "pageWeather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "forecast",
