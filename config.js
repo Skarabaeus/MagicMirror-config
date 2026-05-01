@@ -54,7 +54,7 @@ let config = {
 			config: {
 				modules: [
 					["MMM-PhotoStack", "pagePhotoClock"],
-					["clock", "calendar", "pageWeather"]
+					["pageInfoClock", "calendar", "pageWeather"]
 				],
 				fixed: ["alert", "updatenotification", "MMM-PageSwipe"]
 			}
@@ -72,7 +72,8 @@ let config = {
 		},
 		{
 			module: "clock",
-			position: "top_left"
+			position: "top_left",
+			classes: "pageInfoClock"
 		},
 		{
 			module: "clock",
