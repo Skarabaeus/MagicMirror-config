@@ -39,13 +39,13 @@ let config = {
 
 	modules: [
 		{
-			module: "MMM-BackgroundSlideshow",
+			module: "MMM-PhotoStack",
 			position: "fullscreen_below",
 			config: {
 				imagePaths: ["/home/stefan/Pictures"],
-				slideshowSpeed: 10000,
-				transitionImages: true,
-				transition: "fade",
+				speed: 10000,
+				stackSize: 6,
+				photoWidth: 600,
 				recursiveSubDirectories: true,
 			}
 		},
@@ -53,25 +53,15 @@ let config = {
 			module: "MMM-pages",
 			config: {
 				modules: [
-					["MMM-BackgroundSlideshow"],
-					["clock", "calendar", "compliments", "pageWeather"]
+					["MMM-PhotoStack", "pagePhotoClock"],
+					["clock", "calendar", "pageWeather"]
 				],
-				fixed: ["alert", "updatenotification", "MMM-KeyBindings"]
+				fixed: ["alert", "updatenotification", "MMM-PageSwipe"]
 			}
 		},
 		{
-			module: "MMM-KeyBindings",
-			config: {
-				enableKeyboard: true,
-				handleKeys: ["k"],
-				actions: [
-					{
-						key: "k",
-						state: "KEY_PRESSED",
-						notification: "PAGE_INCREMENT"
-					}
-				]
-			}
+			module: "MMM-PageSwipe",
+			config: {}
 		},
 		{
 			module: "alert",
@@ -83,6 +73,17 @@ let config = {
 		{
 			module: "clock",
 			position: "top_left"
+		},
+		{
+			module: "clock",
+			position: "bottom_right",
+			classes: "pagePhotoClock",
+			config: {
+				displaySeconds: false,
+				showDate: true,
+				showTime: true,
+				showWeek: false,
+			}
 		},
 		{
 			module: "calendar",
